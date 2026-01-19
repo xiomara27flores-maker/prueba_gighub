@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Guía_Interactiva_GitHub</title>
+    </head>   
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="github-logo">📦</div>
+            <h1>Guía Interactiva de GitHub</h1>
+            <p>Aprende a usar GitHub paso a paso</p>
+        </div>
+
+        <div class="content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+
+            <!-- Sección 1: Introducción -->
+            <div class="section active" id="section1">
+                <h2>¿Qué es GitHub?</h2>
+                <p>GitHub es una plataforma que te permite guardar, compartir y colaborar en proyectos de código. Piensa en GitHub como un "Google Drive" pero especialmente diseñado para programadores.</p>
+                
+                <h3>¿Para qué sirve?</h3>
+                <ul>
+                    <li><strong>Guardar tu código:</strong> Almacena tus proyectos de forma segura en la nube</li>
+                    <li><strong>Control de versiones:</strong> Guarda un historial de todos los cambios que haces</li>
+                    <li><strong>Colaboración:</strong> Trabaja en equipo con otros desarrolladores</li>
+                    <li><strong>Portafolio:</strong> Muestra tus proyectos a empleadores o clientes</li>
+                    <li><strong>Respaldo:</strong> Nunca pierdas tu trabajo</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 Dato importante:</strong> Git y GitHub son diferentes. Git es el programa que controla las versiones, GitHub es la página web donde guardas tus proyectos.
+                </div>
+            </div>
+
+            <!-- Sección 2: Instalación -->
+            <div class="section" id="section2">
+                <h2>Paso 1: Instalación</h2>
+                
+                <h3>🔹 Crear cuenta en GitHub</h3>
+                <div class="step-box">
+                    <h4>Paso 1.1: Registro</h4>
+                    <p>1. Ve a <strong>github.com</strong></p>
+                    <p>2. Haz clic en "Sign up" (Registrarse)</p>
+                    <p>3. Ingresa tu email, crea una contraseña y elige un nombre de usuario</p>
+                    <p>4. Verifica tu email</p>
+                </div>
+
+                <h3>🔹 Instalar Git en tu computadora</h3>
+                
+                <div class="step-box">
+                    <h4>Para Windows:</h4>
+                    <p>1. Ve a <strong>git-scm.com</strong></p>
+                    <p>2. Descarga Git para Windows</p>
+                    <p>3. Ejecuta el instalador y sigue los pasos (deja las opciones por defecto)</p>
+                    <p>4. ¡Listo!</p>
+                </div>
+
+                <div class="step-box">
+                    <h4>Para Mac:</h4>
+                    <p>1. Abre la Terminal</p>
+                    <p>2. Escribe: <code>git --version</code></p>
+                    <p>3. Si no está instalado, se instalará automáticamente</p>
+                </div>
+
+                <div class="step-box">
+                    <h4>Para Linux:</h4>
+                    <p>Abre la terminal y escribe:</p>
+                    <div class="code-box">
+                        <code>sudo apt-get install git</code>
+                    </div>
+                </div>
+
+                <h3>🔹 Verificar la instalación</h3>
+                <p>Abre la terminal (o Git Bash en Windows) y escribe:</p>
+                <div class="code-box">
+                    <code>git --version</code>
+                </div>
+                <p>Deberías ver algo como: <code>git version 2.x.x</code></p>
+            </div>
+
+            <!-- Sección 3: Configuración -->
+            <div class="section" id="section3">
+                <h2>Paso 2: Configuración inicial</h2>
+                
+                <p>Antes de usar Git, necesitas configurar tu identidad. Abre la terminal y ejecuta estos comandos:</p>
+                
+                <h3>🔹 Configurar tu nombre</h3>
+                <div class="code-box">
+                    <code>git config --global user.name "Tu Nombre"</code>
+                </div>
+
+                <h3>🔹 Configurar tu email</h3>
+                <div class="code-box">
+                    <code>git config --global user.email "tuemail@ejemplo.com"</code>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Importante:</strong> Usa el mismo email que usaste para crear tu cuenta de GitHub.
+                </div>
+
+                <h3>🔹 Verificar configuración</h3>
+                <div class="code-box">
+                    <code>git config --list</code>
+                </div>
+            </div>
+
+            <!-- Sección 4: Primer repositorio -->
+            <div class="section" id="section4">
+                <h2>Paso 3: Tu primer repositorio</h2>
+                
+                <h3>¿Qué es un repositorio?</h3>
+                <p>Un repositorio (o "repo") es como una carpeta que contiene tu proyecto y todo su historial de cambios.</p>
+
+                <h3>🔹 Crear repositorio en GitHub</h3>
+                <div class="step-box">
+                    <h4>Método 1: Desde la página web</h4>
+                    <p>1. Inicia sesión en GitHub</p>
+                    <p>2. Haz clic en el botón "+" arriba a la derecha</p>
+                    <p>3. Selecciona "New repository"</p>
+                    <p>4. Dale un nombre (ejemplo: "mi-primer-proyecto")</p>
+                    <p>5. Selecciona "Public" o "Private"</p>
+                    <p>6. Marca "Add a README file"</p>
+                    <p>7. Haz clic en "Create repository"</p>
+                </div>
+
+                <div class="info-box">
+                    <strong>✨ ¡Felicidades!</strong> Ya creaste tu primer repositorio en GitHub. Ahora vamos a subir código.
+                </div>
+            </div>
+
+            <!-- Sección 5: Subir archivos -->
+            <div class="section" id="section5">
+                <h2>Paso 4: Subir tu primer archivo</h2>
+                
+                <h3>🔹 Método 1: Desde la página web (más fácil)</h3>
+                <div class="step-box">
+                    <h4>Para principiantes:</h4>
+                    <p>1. Entra a tu repositorio en GitHub</p>
+                    <p>2. Haz clic en "Add file" → "Create new file"</p>
+                    <p>3. Dale un nombre al archivo (ejemplo: <code>index.html</code>)</p>
+                    <p>4. Escribe tu código en el editor</p>
+                    <p>5. Abajo, en "Commit new file", escribe un mensaje</p>
+                    <p>6. Haz clic en "Commit new file"</p>
+                </div>
+
+                <h3>🔹 Método 2: Desde tu computadora (profesional)</h3>
+                <p>Sigue estos pasos en orden:</p>
+
+                <div class="step-box">
+                    <h4>Paso 4.1: Crear una carpeta para tu proyecto</h4>
+                    <div class="code-box">
+                        <code>mkdir mi-proyecto</code><br>
+                        <code>cd mi-proyecto</code>
+                    </div>
+                </div>
+
+                <div class="step-box">
+                    <h4>Paso 4.2: Inicializar Git</h4>
+                    <div class="code-box">
+                        <code>git init</code>
+                    </div>
+                    <p>Esto convierte tu carpeta en un repositorio Git.</p>
+                </div>
+
+                <div class="step-box">
+                    <h4>Paso 4.3: Crear un archivo</h4>
+                    <p>Crea un archivo (ejemplo: <code>index.html</code>) con tu editor favorito y guárdalo en la carpeta.</p>
+                </div>
+
+                <div class="step-box">
+                    <h4>Paso 4.4: Agregar archivos a Git</h4>
+                    <div class="code-box">
+                        <code>git add .</code>
+                    </div>
+                    <p>El punto (.) significa "todos los archivos"</p>
+                </div>
+
+                <div class="step-box">
+                    <h4>Paso 4.5: Hacer un commit</h4>
+                    <div class="code-box">
+                        <code>git commit -m "Mi primer commit"</code>
+                    </div>
+                    <p>El commit guarda los cambios con un mensaje descriptivo.</p>
+                </div>
+
+                <div class="step-box">
+                    <h4>Paso 4.6: Conectar con GitHub</h4>
+                    <div class="code-box">
+                        <code>git remote add origin https://github.com/tu-usuario/tu-repositorio.git</code>
+                    </div>
+                    <p>Copia esta URL desde tu repositorio en GitHub.</p>
+                </div>
+
+                <div class="step-box">
+                    <h4>Paso 4.7: Subir a GitHub</h4>
+                    <div class="code-box">
+                        <code>git push -u origin main</code>
+                    </div>
+                    <p>Esto sube tus archivos a GitHub por primera vez.</p>
+                </div>
+
+                <div class="info-box">
+                    <strong>🎉 ¡Excelente!</strong> Ya subiste tu primer archivo a GitHub. Refresca la página de tu repositorio para verlo.
+                </div>
+            </div>
+
+            <!-- Sección 6: Comandos esenciales -->
+            <div class="section" id="section6">
+                <h2>Comandos esenciales de Git</h2>
+                
+                <h3>📝 Comandos que usarás todo el tiempo:</h3>
+
+                <div class="code-box">
+                    <code>git status</code><br>
+                    <small>Ver qué archivos han cambiado</small>
+                </div>
+
+                <div class="code-box">
+                    <code>git add nombre-archivo.txt</code><br>
+                    <small>Agregar un archivo específico</small>
+                </div>
+
+                <div class="code-box">
+                    <code>git add .</code><br>
+                    <small>Agregar todos los archivos</small>
+                </div>
+
+                <div class="code-box">
+                    <code>git commit -m "Descripción del cambio"</code><br>
+                    <small>Guardar cambios con un mensaje</small>
+                </div>
+
+                <div class="code-box">
+                    <code>git push</code><br>
+                    <small>Subir cambios a GitHub</small>
+                </div>
+
+                <div class="code-box">
+                    <code>git pull</code><br>
+                    <small>Descargar cambios de GitHub</small>
+                </div>
+
+                <div class="code-box">
+                    <code>git clone URL-del-repositorio</code><br>
+                    <small>Copiar un repositorio a tu computadora</small>
+                </div>
+
+                <h3>🔄 Flujo de trabajo básico:</h3>
+                <ol>
+                    <li>Haces cambios en tus archivos</li>
+                    <li><code>git add .</code> → Preparas los cambios</li>
+                    <li><code>git commit -m "mensaje"</code> → Guardas los cambios</li>
+                    <li><code>git push</code> → Subes a GitHub</li>
+                </ol>
+            </div>
+
+            <!-- Sección 7: Checklist final -->
+            <div class="section" id="section7">
+                <h2>✅ Checklist final</h2>
+                
+                <p>Marca cada tarea conforme la completes (haz clic en cada línea):</p>
+                
+                <ul class="checklist">
+                    <li onclick="this.classList.toggle('checked')">Crear cuenta en GitHub</li>
+                    <li onclick="this.classList.toggle('checked')">Instalar Git en mi computadora</li>
+                    <li onclick="this.classList.toggle('checked')">Configurar mi nombre y email</li>
+                    <li onclick="this.classList.toggle('checked')">Crear mi primer repositorio</li>
+                    <li onclick="this.classList.toggle('checked')">Subir mi primer archivo</li>
+                    <li onclick="this.classList.toggle('checked')">Entender los comandos básicos</li>
+                </ul>
+
+                <div class="info-box" style="margin-top: 30px;">
+                    <h3>🎓 Próximos pasos:</h3>
+                    <ul>
+                        <li>Practica creando más repositorios</li>
+                        <li>Explora proyectos de otros usuarios</li>
+                        <li>Aprende sobre "branches" (ramas)</li>
+                        <li>Descubre GitHub Pages para publicar sitios web gratis</li>
+                    </ul>
+                </div>
+
+                <div class="step-box" style="margin-top: 30px;">
+                    <h4>📚 Recursos útiles:</h4>
+                    <p>• Documentación oficial: docs.github.com</p>
+                    <p>• Guías interactivas: skills.github.com</p>
+                    <p>• Comunidad en español: github.com/topics/spanish</p>
+                </div>
+            </div>
+
+            <!-- Navegación -->
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="changeSection(-1)">← Anterior</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="changeSection(1)">Siguiente →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 7;
+
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function changeSection(direction) {
+            const current = document.getElementById('section' + currentSection);
+            current.classList.remove('active');
+            
+            currentSection += direction;
+            
+            if (currentSection < 1) currentSection = 1;
+            if (currentSection > totalSections) currentSection = totalSections;
+            
+            const next = document.getElementById('section' + currentSection);
+            next.classList.add('active');
+            
+            document.getElementById('prevBtn').disabled = currentSection === 1;
+            document.getElementById('nextBtn').textContent = currentSection === totalSections ? '🎉 ¡Finalizar!' : 'Siguiente →';
+            
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.getElementById('prevBtn').disabled = true;
+        updateProgress();
+    </script>
+</body>
+</html>
