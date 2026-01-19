@@ -1,0 +1,188 @@
+lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estruraestilo.css">
+    <title>MVC en PHP - Guía Completa</title>
+    </head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏗️ MVC en PHP</h1>
+            <p>Modelo - Vista - Controlador</p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <h2>¿Qué es MVC?</h2>
+                <p>MVC (Model-View-Controller) es un patrón de arquitectura de software que separa una aplicación en tres componentes principales interconectados. Esta separación ayuda a organizar el código, facilitando el mantenimiento, la escalabilidad y el trabajo en equipo.</p>
+                <p>En lugar de tener todo el código mezclado en un solo archivo, MVC organiza el código según su responsabilidad específica, haciendo que cada parte tenga una función clara y definida.</p>
+            </div>
+
+            <div class="blocks-container">
+                <div class="block model">
+                    <div class="block-icon">💾</div>
+                    <h3>Model (Modelo)</h3>
+                    <p><strong>Responsabilidad:</strong> Gestión de datos y lógica de negocio</p>
+                    <p>El Modelo representa los datos de la aplicación y las reglas de negocio. Se encarga de interactuar con la base de datos, validar información y procesar la lógica empresarial.</p>
+                    
+                    <div class="code-example">
+<pre>&lt;?php
+class UsuarioModel {
+    private $db;
+    
+    public function __construct($database) {
+        $this->db = $database;
+    }
+    
+    public function obtenerUsuario($id) {
+        $stmt = $this->db->prepare(
+            "SELECT * FROM usuarios 
+             WHERE id = ?"
+        );
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+    
+    public function guardarUsuario($datos) {
+        // Validación y guardado
+        $stmt = $this->db->prepare(
+            "INSERT INTO usuarios 
+             (nombre, email) 
+             VALUES (?, ?)"
+        );
+        return $stmt->execute([
+            $datos['nombre'], 
+            $datos['email']
+        ]);
+    }
+}
+?&gt;</pre>
+                    </div>
+                </div>
+
+                <div class="block view">
+                    <div class="block-icon">🎨</div>
+                    <h3>View (Vista)</h3>
+                    <p><strong>Responsabilidad:</strong> Presentación de datos al usuario</p>
+                    <p>La Vista es la interfaz de usuario. Muestra los datos al usuario y captura sus interacciones. No contiene lógica de negocio, solo código de presentación (HTML, CSS, JavaScript).</p>
+                    
+                    <div class="code-example">
+<pre>&lt;!-- vista_usuario.php --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Perfil de Usuario&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Perfil de Usuario&lt;/h1&gt;
+    
+    &lt;div class="usuario"&gt;
+        &lt;h2&gt;&lt;?= $usuario['nombre'] ?&gt;&lt;/h2&gt;
+        &lt;p&gt;Email: &lt;?= $usuario['email'] ?&gt;&lt;/p&gt;
+        &lt;p&gt;Registrado: &lt;?= $usuario['fecha'] ?&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;a href="/editar/&lt;?= $usuario['id'] ?&gt;"&gt;
+        Editar
+    &lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+
+                <div class="block controller">
+                    <div class="block-icon">🎮</div>
+                    <h3>Controller (Controlador)</h3>
+                    <p><strong>Responsabilidad:</strong> Coordinar Modelo y Vista</p>
+                    <p>El Controlador actúa como intermediario entre el Modelo y la Vista. Recibe las peticiones del usuario, procesa la información usando el Modelo y selecciona la Vista apropiada para mostrar.</p>
+                    
+                    <div class="code-example">
+<pre>&lt;?php
+class UsuarioController {
+    private $modelo;
+    
+    public function __construct() {
+        $this->modelo = new UsuarioModel($db);
+    }
+    
+    public function mostrarPerfil($id) {
+        // 1. Obtener datos del modelo
+        $usuario = $this->modelo
+            ->obtenerUsuario($id);
+        
+        // 2. Verificar si existe
+        if (!$usuario) {
+            header('Location: /error');
+            exit;
+        }
+        
+        // 3. Cargar la vista
+        include 'vistas/vista_usuario.php';
+    }
+    
+    public function guardar() {
+        // Procesar formulario
+        $datos = [
+            'nombre' => $_POST['nombre'],
+            'email' => $_POST['email']
+        ];
+        
+        // Usar el modelo
+        $this->modelo->guardarUsuario($datos);
+        
+        // Redirigir
+        header('Location: /exito');
+    }
+}
+?&gt;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-diagram">
+                <h2>📊 Flujo de Funcionamiento</h2>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <strong>1. Usuario</strong><br>
+                        Hace una petición
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">
+                        <strong>2. Controller</strong><br>
+                        Recibe la petición
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">
+                        <strong>3. Model</strong><br>
+                        Procesa datos
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">
+                        <strong>4. Controller</strong><br>
+                        Prepara respuesta
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">
+                        <strong>5. View</strong><br>
+                        Muestra resultado
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefits">
+                <h2>✨ Beneficios de usar MVC</h2>
+                <ul>
+                    <li><strong>Separación de responsabilidades:</strong> Cada componente tiene una tarea específica</li>
+                    <li><strong>Mantenimiento más fácil:</strong> Los cambios en una capa no afectan a las demás</li>
+                    <li><strong>Trabajo en equipo:</strong> Varios desarrolladores pueden trabajar en diferentes capas simultáneamente</li>
+                    <li><strong>Reutilización de código:</strong> Los modelos pueden usarse en diferentes vistas</li>
+                    <li><strong>Testeo simplificado:</strong> Cada componente puede probarse de forma independiente</li>
+                    <li><strong>Escalabilidad:</strong> Es más fácil agregar nuevas funcionalidades</li>
+                    <li><strong>Organización clara:</strong> El código está estructurado y es más fácil de entender</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
